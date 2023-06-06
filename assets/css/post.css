@@ -24,6 +24,7 @@
 }
 html,
 body {
+  color-scheme: dark;
   color: var(--white-2);
   background-color: var(--gray-6);
   font-family: "JetBrains Mono", monospace;
@@ -45,7 +46,7 @@ header {
 }
 main {
   margin: 0 auto;
-  max-width: 650px;
+  max-width: 750px;
   padding: 3rem 0 4rem 0;
 }
 .article {
@@ -84,7 +85,6 @@ main {
 }
 
 /* markdown content */
-
 .content * {
   line-height: 180%;
 }
@@ -124,6 +124,14 @@ main {
   font-style: italic;
   font-weight: 100;
   border-left: 0.3rem solid var(--white-2);
+}
+.content blockquote:has(> blockquote), .content blockquote>blockquote {
+  padding-left: 0;
+  margin-bottom: 2rem;
+  font-style: italic;
+  font-weight: 100;
+  border-left: 0;
+  text-align: center;
 }
 .content strong {
   font-weight: bold;

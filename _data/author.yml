@@ -1,23 +1,22 @@
-name: Sharad Raj
-dp: https://avatars2.githubusercontent.com/u/36638057?s=460&u=0cbe4fd6b5a3655d91b3eb86db834d0829a0c086&v=4
-description: "
-  <p>
-    Developed by Sharad Raj who lives in India building useful things for the world.
+name: Anatharr
+dp: https://avatars.githubusercontent.com/u/38926297?v=4
+description: '
+  <p style="text-align: justify;">
+    This website holds all the CTF writeups that I wrote. I will add them
+    when I have spare time, so feel free to come back later :D
   </p>
   <br/>
   <p>
-    You should follow him on <a href='https://github.com/sharadcodes' target='_blank'>Github</a>
-  </P>
-"
-email: dev_sharad@outlook.com
+    You can also contact me on Discord : <i>Anatharr#9532</i>
+  </p>
+  <br/>
+  <b>_by Anatharr</b>
+'
+email:
 contact:
-  - title: linkedin
-    url: https://www.linkedin.com/in/srsmaurya
   - title: github
-    url: https://github.com/sharadcodes
-  - title: twitter
-    url: https://twitter.com/iamsharadraj
-  - title: dev
-    url: https://dev.to/sharadcodes
-  - title: email
-    url: mailto:dev_sharad@outlook.com
+    url: https://github.com/Anatharr
+  - title: hackthebox
+    url: https://app.hackthebox.com/users/435274
+  - title: tryhackme
+    url: https://tryhackme.com/p/Anatharr
