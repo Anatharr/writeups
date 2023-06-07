@@ -6,6 +6,8 @@ author:
   name: Anatharr
   email:
 
+timezone: Europe/Paris
+
 plugins:
   - jemoji
   - jekyll-sitemap

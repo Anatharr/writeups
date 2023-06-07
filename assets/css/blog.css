@@ -89,9 +89,28 @@ main {
   display: grid;
   row-gap: 2rem;
   margin: 4rem 0 3rem 0;
+  padding: 2rem;
+}
+.article-content {
+  padding: 2rem;
+}
+.article-img {
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  /*max-width: 30%;*/
+}
+.article-img > img {
+  /*max-width: none;*/
+  /*max-height: 100%;*/
+  border-radius: 15px 0 0 15px;
+  object-fit: cover;
+}
+.article {
+  display: flex;
+  flex-direction: row;
 }
 .articles .article {
-  padding: 2rem;
   background: var(--gray-3);
   border-radius: 15px;
   transition: all 0.2s ease-in-out;
@@ -155,6 +174,13 @@ main {
   .articles {
     row-gap: 1.2rem;
   }
+  .article {
+    flex-direction: column;
+  }
+  .article-img > img {
+    width: 100%;
+  }
+
 }
 
 @media screen and (max-width: 350px) {
