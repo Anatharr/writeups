@@ -8,7 +8,7 @@
         {% for post in site.posts %}
         <article class="article">
           {% if post.image %}
-          <a class="article-img" href="{{site.baseurl}}{{post.url}}"><img src="{{site.baseurl}}{{post.image}}"/></a>
+          <a class="article-img-link" href="{{site.baseurl}}{{post.url}}"><img class="article-img" src="{{site.baseurl}}{{post.image}}"/></a>
           {% endif %}
           <div class="article-content">
             <h2 class="article-title">
