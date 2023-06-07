@@ -167,6 +167,7 @@ main {
 .content img {
   max-width: 100%;
   margin: 1rem 0;
+  border-radius: 15px;
 }
 .content img.emoji {
 	margin: 0 !important;
@@ -224,8 +225,56 @@ main {
   border: 2px solid white;
 }
 
+.content p:has(img) {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 1.75rem 0;
+}
+.row-container * {
+  flex: 1;
+}
+.row-container p {
+  margin: 0;
+}
+.flex-3 {
+  flex:3;
+}
+.flex-2 {
+  flex:2;
+}
+.row-container :not(:last-child) {
+  margin-right: 2rem;
+  padding-right: 2rem;
+  border-right: 1px solid var(--gray-3);
+}
+
 @media screen and (max-width: 750px) {
   body {
     padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .row-container {
+    flex-direction: column;
+  }
+  .column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  .row-container p {
+    margin: 0 0 1.75rem 0;
+  }
+  .row-container :not(:last-child) {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
   }
 }
