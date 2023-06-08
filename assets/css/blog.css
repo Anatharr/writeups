@@ -109,6 +109,7 @@ main {
 }
 .article-content {
   padding: 2rem;
+  width: 100%;
 }
 .articles .article:hover {
   transform: scale(1.05);
