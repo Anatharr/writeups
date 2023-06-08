@@ -28,16 +28,16 @@ Looking at how are implemented the `showStats` and `buyStrUpPotion` functions, w
 
 
 <div class="row-container">
-	<div class="flex-2">
-{% markdown %}
+<div class="flex-2">
+
 In order to get the flag, our character needs to have at least 150 of strength and intelligence. Unfortunately, we only have 100 gold and we cannot buy intelligence potions... We will have to use our own intelligence and a **Use-After-Free** to do so !	
-{% endmarkdown %}
-	</div>
-	<div>
-{% markdown %}
+
+</div>
+<div>
+
 ![view_flag function]({{site.baseurl}}/assets/images/404ctf/l-alchimiste/view_flag.png)
-{% endmarkdown %}
-	</div>
+
+</div>
 </div>
 
 # Analysis
@@ -66,29 +66,30 @@ ___
 As we're still unable to increase our intelligence, let's look further in the code. There is another option which allows us to send a message to the alchemist :
 
 <div class="row-container column-reverse">
-	<div class="flex-2">
-{% markdown %}
+<div class="flex-2">
+
 In this function, a buffer is allocated on the heap and we can write arbitrary data to it. Using this ability with the previous **Use-After-Free**, we can overwrite a freed potion and choose the function which will be called when used.
-{% endmarkdown %}
-	</div>
-	<div>
-{% markdown %}
+
+</div>
+<div>
+
 ![sendMessage function]({{site.baseurl}}/assets/images/404ctf/l-alchimiste/sendMessage.png)
-{% endmarkdown %}
-	</div>
+
+</div>
 </div>
 
+
 <div class="row-container">
-	<div>
-{% markdown %}
+<div>
+
 ![incInt function]({{site.baseurl}}/assets/images/404ctf/l-alchimiste/incInt.png)
-{% endmarkdown %}
-	</div>
-	<div class="flex-2">
-{% markdown %}
+
+</div>
+<div class="flex-2">
+
 Looking at the assembly code, and defined functions, we can observe that an `incInt` function is present in the binary, even if it is not called anywhere. This will make exploitation even easier for us, as this is exactly what we want to achieve.
-{% endmarkdown %}
-	</div>
+
+</div>
 </div>
 
 As PIE is not enabled, the address of this function will not be random, we can find it at `0x4008d5`.

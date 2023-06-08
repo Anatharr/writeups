@@ -8,10 +8,16 @@ author:
 
 timezone: Europe/Paris
 
+safe: true
+
 plugins:
   - jemoji
-  - jekyll-sitemap
-  - jekyll-feed
+
+kramdown:
+  parse_block_html: true
+
+whitelist:
+  - jemoji
 
 collections_dir: all_collections
 collections:
