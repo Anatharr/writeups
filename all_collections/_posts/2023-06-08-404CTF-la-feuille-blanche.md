@@ -35,17 +35,4 @@ We start by generating all the gadgets in a file, as we will probably search thr
 > A common technique to issue a system call when the binary doesn't contain `int 0x80` (or `syscall` for x86-64) is to **use the libc**. In our case libc addresses are randomized due to ASLR, so we will find a way to bypass this mitigation.
 > This can be done either by leaking an address from the libc or by **using an address already present on the memory or registers**
 
-<div class="row-container column-reverse">
-	<div class="flex-2">
-{% markdown %}
-
-{% endmarkdown %}
-	</div>
-	<div>
-{% markdown %}
-
-{% endmarkdown %}
-	</div>
-</div>
-
-
+// TODO

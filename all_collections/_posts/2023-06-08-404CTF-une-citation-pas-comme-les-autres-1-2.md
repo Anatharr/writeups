@@ -72,7 +72,6 @@ The '%n' format specifier writes the number of characters printed so far at the 
 
 We will then have to put our address at the end of the payload, 
 
-
 ```py
 def write_rop(offset, val):
         p.recvuntil(b'>>> ')
@@ -88,24 +87,5 @@ def write_rop(offset, val):
 It took me a while to figure out how to do it, but I managed it with a bit of gadget gymnastic.
 
 Another issue is that there was a timeout on the server side, and 
-![ROPgadget output]({{site.baseurl}}/assets/images/404ctf/la-feuille-blanche/gadgets.png)
 
-We start by generating all the gadgets in a file, as we will probably search through them a lot. The first idea (and surely the simplest) is to search for a `int 0x80` gadget, which could allow us to run some syscalls. Unfortunately, the binary desn't have such gadget. I wonder where we could find one ? 🤔
-
-> A common technique to issue a system call when the binary doesn't contain `int 0x80` (or `syscall` for x86-64) is to **use the libc**. In our case libc addresses are randomized due to ASLR, so we will find a way to bypass this mitigation.
-> This can be done either by leaking an address from the libc or by **using an address already present on the memory or registers**
-
-<div class="row-container column-reverse">
-	<div class="flex-2">
-{% markdown %}
-
-{% endmarkdown %}
-	</div>
-	<div>
-{% markdown %}
-
-{% endmarkdown %}
-	</div>
-</div>
-
-
+// TODO (yes I know I didn't even finished the sentence...)
