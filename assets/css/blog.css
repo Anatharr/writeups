@@ -45,6 +45,11 @@ main {
   max-width: 650px;
   padding: 3rem 0;
 }
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 /* header */
 
@@ -161,6 +166,12 @@ main {
 @media screen and (max-width: 550px) {
   header .site-title {
     font-size: 3rem;
+  }
+  footer * {
+    font-size: 0.8rem;
+  }
+  footer {
+    flex-direction: column-reverse;
   }
   #bio {
     flex-direction: column;
