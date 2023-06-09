@@ -20,7 +20,7 @@ When I did the challenge, the comment about `/bin` not being mounted wasn't pres
 
 In the `main` function, we have the choice between 3 functions :
 - `count_quotes` : Nothing interesting here
-- `pick_quote` : This function picks a random quote in a file called `citations.txt` and prints it. Citations are delimited with '%'. This function is very useful and could have saved me hours but why choose the easiest way ? :)
+- `pick_quote` : This function picks a random quote in a file called `citations.txt` and prints it. Citations are delimited with `'%'`. This function is very useful and could have saved me hours but why choose the easiest way ? :)
 - `write_quote` : We are asked some input, and this input is then printed. We can notice here a **Format String Vulnerability**, as we control the string passed to `printf`.
 
 ![Ghidra decompiled write_quote function]({{site.baseurl}}/assets/images/404ctf/la-feuille-blanche/write_quote.png)
@@ -31,9 +31,9 @@ In the `main` function, we have the choice between 3 functions :
 > 
 > An attacker could inject format specifiers in order to read memory content. This happens because when calling a function, if there is a lot of arguments they will be passed through the stack. Take a look at [this video](https://youtu.be/0WvrSfcdq1I) from the great LiveOverflow for an introduction to this vulnerability.
 
-With `printf`, a *Format String Vulnerability* can be used to leak content of the memory, using '%x' or '%p', but also to **write** data thanks to the '%n' format specifier and a bit of tweaking.
+With `printf`, a *Format String Vulnerability* can be used to leak content of the memory, using `'%x'` or `'%p'`, but also to **write** data thanks to the `'%n'` format specifier and a bit of tweaking.
 
-The first plan was to leak an address of the stack to compute the return address of `write_quote`, and then write a ROP chain to execute an **execve** syscall and execute /bin/sh.
+The first plan was to leak an address of the stack to compute the return address of `write_quote`, and then write a ROP chain to execute an **execve** syscall and execute `/bin/sh`.
 
 > It would be cleaner to use the return address of the main function instead, but as it is exiting and never returning we cannot do it.
 >  
@@ -64,13 +64,17 @@ targetAddr = addr + 0x5a8
 print(f"Target addr {hex(targetAddr)}")
 ```
 
-Then I wanted to ensure that our write primitive is stable and simple to use, so I wanted to write a function to write some data at a given address. 
+Then I wanted to ensure that our write primitive is stable and simple to use, so I wanted to write a function to automate the process of writing some data at a given address. 
 
-The '%n' format specifier writes the number of characters printed so far at the addess passed as argument. But if we put an address in our payload, it means that we will have some **null** character, and `printf` will stop at the first '\0' encountered.
+The `'%n'` format specifier writes the number of characters printed so far at the addess passed as argument. But if we put an address in our payload, it means that we will have some **null** character, and `printf` will stop at the first `'\0'` encountered.
 
-> For this reason, a payload where the address is in the middle won't work !
+> For this reason, a payload where the address is before the `'%n'` won't work !
 
-We will then have to put our address at the end of the payload, 
+We will then have to put our address at the end of the payload. Such payload will have the following structure :
+- Padding `'%c'` to shift parameter counter until the place where the address is
+- `'%Nx'` where `N` will control the value that we want to write
+- Padding `'_'` for alignment and to ensure that the address is at a fixed position
+- The wanted address, little-endian
 
 ```py
 def write_rop(offset, val):
