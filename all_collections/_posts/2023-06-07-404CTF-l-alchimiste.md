@@ -3,7 +3,7 @@ layout: post
 title: 404CTF 2023 | L'Alchimiste
 image: /assets/images/404ctf/l-alchimiste/cover.png
 date: 2023-06-07 01:20:00
-categories: [404ctf, pwn]
+categories: [404ctf, pwn, easy, use-after-free]
 ---
 
 This challenge was part of the [404CTF 2023](https://www.404ctf.fr/), organized by the General Directorate for External Security (DGSE) and Télécom SudParis.

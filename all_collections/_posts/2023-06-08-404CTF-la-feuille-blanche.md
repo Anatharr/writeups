@@ -3,7 +3,7 @@ layout: post
 title: 404CTF 2023 | La Feuille Blanche
 image: /assets/images/404ctf/la-feuille-blanche/cover.png
 date: 2023-06-08 12:38:00
-categories: [404ctf, pwn]
+categories: [404ctf, pwn, medium, alternative resolution, extreme, buffer overflow, rop chain]
 ---
 
 This challenge was part of the [404CTF 2023](https://www.404ctf.fr/), organized by the General Directorate for External Security (DGSE) and Télécom SudParis.

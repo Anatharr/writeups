@@ -3,7 +3,7 @@ layout: post
 title: 404CTF 2023 | Une citation pas comme les autres [1/2]
 image: /assets/images/404ctf/une-citation-pas-comme-les-autres-1-2/cover.png
 date: 2023-06-08 16:26:00
-categories: [404ctf, pwn, medium, alternative resolution, extreme]
+categories: [404ctf, pwn, medium, alternative resolution, extreme, format string, rop chain, sigreturn frame]
 ---
 
 This challenge was part of the [404CTF 2023](https://www.404ctf.fr/), organized by the General Directorate for External Security (DGSE) and Télécom SudParis.

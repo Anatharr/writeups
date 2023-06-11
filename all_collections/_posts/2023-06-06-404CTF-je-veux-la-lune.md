@@ -3,7 +3,7 @@ layout: post
 title: 404CTF 2023 | Je veux la lune !
 image: /assets/images/404ctf/je-veux-la-lune/cover.png
 date: 2023-06-06 23:40:00
-categories: [404ctf, pwn]
+categories: [404ctf, pwn, intro, command injection]
 ---
 
 This challenge was part of the [404CTF 2023](https://www.404ctf.fr/), organized by the General Directorate for External Security (DGSE) and Télécom SudParis.
